@@ -11,7 +11,7 @@ no_implicit_reexport = true
 ignore_missing_imports = true
 exclude = [
     "tests",
-    "migrations",
+    "alembic"
 ]
 
 [tool.pytest.ini_options]

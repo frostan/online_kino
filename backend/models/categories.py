@@ -5,7 +5,6 @@ from .base import Base
 from .movies_categories import movies_categories
 
 
-
 class Categories(Base):
     title: Mapped[str] = mapped_column(String)
     movies: Mapped[list['Movies']] = relationship(

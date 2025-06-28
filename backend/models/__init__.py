@@ -16,5 +16,5 @@ __all__ = (
     'User',
     'movies_categories',
     'movies_genres',
-    'Comments'
+    'Comments',
 )

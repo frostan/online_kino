@@ -1,5 +1,5 @@
 [tool.mypy]
-python_version = "3.12"
+python_version = "3.9"
 mypy_path = "./backend"
 follow_imports = "silent"
 strict_optional = true

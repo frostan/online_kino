@@ -4,7 +4,6 @@ from sqlalchemy.orm import Mapped, mapped_column, relationship
 from .base import Base
 
 
-
 class Movies(Base):
     title: Mapped[str] = mapped_column(String)
     date: Mapped[DateTime] = mapped_column(DateTime)
@@ -12,7 +11,7 @@ class Movies(Base):
     rating: Mapped[float] = mapped_column(Float)
     comments: Mapped[list['Comments']] = relationship(
         'Comments', back_populates='movie'
-    )
+    )  # ruff: noqa: F821
     categories: Mapped[list['Categories']] = relationship(
         'Category', secondary='movies_category', back_populates='movies'
     )

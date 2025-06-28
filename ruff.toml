@@ -1,0 +1,24 @@
+# Assume Python 3.12
+target-version = "py39"
+extend-exclude = ["migrations"]
+
+[lint]
+select = ["E", "F", "UP", "B", "SIM", "Q"]
+ignore = []
+
+
+fixable = ["ALL"]
+unfixable = []
+
+
+[lint.flake8-quotes]
+inline-quotes = "single"
+
+[format]
+quote-style = "single"
+line-ending = "auto"
+
+skip-magic-trailing-comma = false
+
+docstring-code-format = false
+docstring-code-line-length = "dynamic"

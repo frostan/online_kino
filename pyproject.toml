@@ -1,0 +1,21 @@
+[tool.mypy]
+python_version = "3.12"
+mypy_path = "./backend"
+follow_imports = "silent"
+strict_optional = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+disallow_any_generics = true
+check_untyped_defs = true
+no_implicit_reexport = true
+ignore_missing_imports = true
+exclude = [
+    "tests",
+    "migrations",
+]
+
+[tool.pytest.ini_options]
+addopts = [
+    "--import-mode=importlib",
+]
+pythonpath = "backend"

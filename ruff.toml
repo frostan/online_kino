@@ -1,10 +1,10 @@
 # Assume Python 3.12
 target-version = "py39"
-extend-exclude = ["migrations"]
+extend-exclude = ["alembic"]
 
 [lint]
 select = ["E", "F", "UP", "B", "SIM", "Q"]
-ignore = []
+ignore = ["F821"]
 
 
 fixable = ["ALL"]

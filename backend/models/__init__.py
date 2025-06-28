@@ -1,14 +1,20 @@
 from .categories import Categories
-from .genres import Genre
+from .genres import Genres
 from .user import User
-from .movies import Movie
+from .movies import Movies
 from .base import Base
+from .movies_categories import movies_categories
+from .movies_genres import movies_genres
+from .comment import Comments
 
 
 __all__ = (
     'Base',
     'Categories',
-    'Genre',
-    'Movie',
+    'Genres',
+    'Movies',
     'User',
+    'movies_categories',
+    'movies_genres',
+    'Comments',
 )

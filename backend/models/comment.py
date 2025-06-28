@@ -2,8 +2,6 @@ from sqlalchemy import DateTime, ForeignKey, String
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from .base import Base
-from .user import User
-from .movies import Movies
 
 
 class Comments(Base):
@@ -12,5 +10,5 @@ class Comments(Base):
     date: Mapped[DateTime] = mapped_column(DateTime)
     movie_id: Mapped[int] = ForeignKey('movies.id')
 
-    movie: Mapped[Movies] = relationship('Movies', back_populates='comments')
-    user: Mapped[User] = relationship('User', back_populates='comments')
+    movie: Mapped['Movies'] = relationship('Movies', back_populates='comments')
+    user: Mapped['User'] = relationship('User', back_populates='comments')

@@ -11,3 +11,6 @@ class Categories(Base):
     movies: Mapped[list[Movies]] = relationship(
         'Movies', secondary=movies_categories, back_populates='categories'
     )
+
+    def __str__(self):
+        return self.title

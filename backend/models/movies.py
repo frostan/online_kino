@@ -11,10 +11,13 @@ class Movies(Base):
     rating: Mapped[float] = mapped_column(Float)
     comments: Mapped[list['Comments']] = relationship(
         'Comments', back_populates='movie'
-    )  # ruff: noqa: F821
+    )
     categories: Mapped[list['Categories']] = relationship(
         'Category', secondary='movies_category', back_populates='movies'
     )
     genres: Mapped[list['Genres']] = relationship(
         'Genres', secondary='movie_genres', back_populates='movies'
     )
+
+    def __str__(self):
+        return self.title

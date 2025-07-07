@@ -10,3 +10,6 @@ class Genres(Base):
     movies: Mapped[list['Movies']] = relationship(
         'Movies', secondary=movies_genres, back_populates='genres'
     )
+
+    def __str__(self):
+        return self.title

@@ -12,3 +12,6 @@ class Comments(Base):
 
     movie: Mapped['Movies'] = relationship('Movies', back_populates='comments')
     user: Mapped['User'] = relationship('User', back_populates='comments')
+
+    def __str__(self):
+        return self.username

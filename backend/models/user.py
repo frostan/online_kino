@@ -10,3 +10,6 @@ class User(Base):
     password: Mapped[str] = mapped_column(String, unique=True)
 
     comments: Mapped[list['Comments']] = relationship('Comments', back_populates='user')
+
+    def __str__(self):
+        return self.username

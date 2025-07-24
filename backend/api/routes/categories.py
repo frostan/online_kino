@@ -1,9 +1,14 @@
-from fastapi import APIRouter
-
+from fastapi import APIRouter, Depends
+from sqlalchemy.ext.asyncio import AsyncSession
+from db.models_crud import crud_categories
+from db.engine import async_session_maker
+from schemas.categories import CategoryRead
 
 categories_router = APIRouter()
 
 
-@categories_router.get('')
-async def categories_list():
-    return {'categories':[]}
+@categories_router.get('', response_model=CategoryRead)
+async def get_all_categories(session: AsyncSession = Depends(async_session_maker)):
+    result = await crud_categories.get_all(session=session)
+    categories = result.fetchall()
+    return [CategoryRead(**dict(row)) for row in categories]

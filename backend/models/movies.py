@@ -13,7 +13,7 @@ class Movies(Base):
         'Comments', back_populates='movie'
     )
     categories: Mapped[list['Categories']] = relationship(
-        'Category', secondary='movies_category', back_populates='movies'
+        'Categories', secondary='movies_category', back_populates='movies'
     )
     genres: Mapped[list['Genres']] = relationship(
         'Genres', secondary='movie_genres', back_populates='movies'

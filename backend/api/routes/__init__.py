@@ -1,8 +1,8 @@
+from .comments import comments_router
+from .categories import categories_router
 from .genres import genres_router
 from .user import user_router
 from .movies import movies_router
-from .comments import comments_router
-from .categories import categories_router
 
 
 __all__ = (

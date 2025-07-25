@@ -1,8 +1,9 @@
+from __future__ import annotations
 from pydantic import BaseModel
 from typing import TYPE_CHECKING, Optional, List,TYPE_CHECKING
 
-if TYPE_CHECKING:
-    from .comments import CommentRead
+# if TYPE_CHECKING:
+#     from .comments import CommentRead
 
 class UserBase(BaseModel):
     username: str

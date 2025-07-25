@@ -1,9 +1,10 @@
+from __future__ import annotations
 from pydantic import BaseModel
 from typing import Optional, List, TYPE_CHECKING
 
-if TYPE_CHECKING:
-    from .movies import MovieRead
-    from .user import UserRead
+# if TYPE_CHECKING:
+#     from .movies import MovieRead
+#     from .user import UserRead
 
 
 class CommentBase(BaseModel):
@@ -12,8 +13,9 @@ class CommentBase(BaseModel):
     movie_id: int
     username: str
 
-    class Config:
-        from_attributes = True
+    model_config = {
+        'from_attributes': True,
+    }
 
 
 class CommentRead(CommentBase):

@@ -1,8 +1,9 @@
+from __future__ import annotations
 from pydantic import BaseModel
 from typing import TYPE_CHECKING, Optional, List
 
-if TYPE_CHECKING:
-    from .movies import MovieRead
+# if TYPE_CHECKING:
+#     from .movies import MovieRead
 
 class GenreBase(BaseModel):
     title: str

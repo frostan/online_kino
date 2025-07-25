@@ -1,10 +1,11 @@
+from __future__ import annotations
 from pydantic import BaseModel
 from typing import List, Optional, TYPE_CHECKING
 
-if TYPE_CHECKING:
-    from .comments import CommentRead
-    from .categories import CategoryRead
-    from .genres import GenreRead
+# if TYPE_CHECKING:
+#     from .comments import CommentRead
+#     from .categories import CategoryRead
+#     from .genres import GenreRead
 
 class MovieBase(BaseModel):
     title: str
@@ -34,4 +35,4 @@ class MovieCreate(MovieBase):
 class MovieUpdate(MovieBase):
     pass
 
-MovieRead.model_rebuild()
+# MovieRead.model_rebuild()

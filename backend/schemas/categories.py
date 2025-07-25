@@ -1,8 +1,9 @@
+from __future__ import annotations
 from pydantic import BaseModel
 from typing import List, Optional, TYPE_CHECKING
 
-if TYPE_CHECKING:
-    from .movies import MovieRead
+# if TYPE_CHECKING:
+#     from .movies import MovieRead
 
 
 class CategoryBase(BaseModel):

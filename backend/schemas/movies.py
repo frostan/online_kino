@@ -1,5 +1,5 @@
 from pydantic import BaseModel
-from typing import List, Optional
+from typing import Optional
 
 
 class MovieBase(BaseModel):
@@ -9,18 +9,19 @@ class MovieBase(BaseModel):
     rating: float
 
     model_config = {
-        "from_attributes": True,
+        'from_attributes': True,
     }
+
 
 class MovieRead(MovieBase):
     id: int
-    comments: Optional[List["CommentRead"]] = None
-    categories: Optional[List["CategoryRead"]] = None
-    genres: Optional[List["GenreRead"]] = None
+    comments: Optional[list['CommentRead']] = None
+    categories: Optional[list['CategoryRead']] = None
+    genres: Optional[list['GenreRead']] = None
 
     model_config = {
-        "from_attributes": True,
-        "arbitrary_types_allowed": True,
+        'from_attributes': True,
+        'arbitrary_types_allowed': True,
     }
 
 

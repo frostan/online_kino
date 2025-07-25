@@ -4,7 +4,7 @@ extend-exclude = ["alembic"]
 
 [lint]
 select = ["E", "F", "UP", "B", "SIM", "Q"]
-ignore = ["F821"]
+ignore = ["F821","B008"]
 
 
 fixable = ["ALL"]

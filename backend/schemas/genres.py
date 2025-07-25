@@ -8,8 +8,9 @@ from typing import TYPE_CHECKING, Optional, List
 class GenreBase(BaseModel):
     title: str
 
-    class Config:
-        from_attributes = True
+    model_config = {
+        'from_attributes': True
+    }  # лучше такой синтаксис использовать, чем class Config
 
 
 class GenreRead(GenreBase):

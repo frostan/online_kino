@@ -10,8 +10,9 @@ class UserBase(BaseModel):
     email: str
     password: str
 
-    class Config:
-        from_attributes = True
+    model_config = {
+        'from_attributes': True
+    }  # лучше такой синтаксис использовать, чем class Config
 
 
 class UserRead(UserBase):

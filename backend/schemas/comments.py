@@ -15,7 +15,7 @@ class CommentBase(BaseModel):
 
     model_config = {
         'from_attributes': True,
-    }
+    }  # лучше такой синтаксис использовать, чем class Config
 
 
 class CommentRead(CommentBase):

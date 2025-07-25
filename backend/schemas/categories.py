@@ -9,8 +9,9 @@ from typing import List, Optional, TYPE_CHECKING
 class CategoryBase(BaseModel):
     title: str
 
-    class Config:
-        from_attributes = True
+    model_config = {
+        'from_attributes': True
+    }  # лучше такой синтаксис использовать, чем class Config
 
 class CategoryRead(CategoryBase):
     id: int

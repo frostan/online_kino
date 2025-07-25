@@ -1,15 +1,13 @@
 from pydantic import BaseModel
-from typing import List, Optional, TYPE_CHECKING
-
-if TYPE_CHECKING:
-    from .movies import MovieRead
+from typing import List, Optional
 
 
 class CategoryBase(BaseModel):
     title: str
 
-    class Config:
-        from_attributes = True
+    model_config = {
+        "arbitrary_types_allowed": True,
+    }
 
 class CategoryRead(CategoryBase):
     id: int

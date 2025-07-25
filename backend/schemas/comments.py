@@ -1,9 +1,5 @@
 from pydantic import BaseModel
-from typing import Optional, List, TYPE_CHECKING
-
-if TYPE_CHECKING:
-    from .movies import MovieRead
-    from .user import UserRead
+from typing import Optional
 
 
 class CommentBase(BaseModel):
@@ -12,8 +8,9 @@ class CommentBase(BaseModel):
     movie_id: int
     username: str
 
-    class Config:
-        from_attributes = True
+    model_config = {
+        "arbitrary_types_allowed": True,
+    }
 
 
 class CommentRead(CommentBase):

@@ -2,6 +2,8 @@ from sqlalchemy import DateTime, Float, String
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from .base import Base
+from .movies_categories import movies_categories
+from .movies_genres import movies_genres
 
 
 class Movies(Base):
@@ -13,10 +15,10 @@ class Movies(Base):
         'Comments', back_populates='movie'
     )
     categories: Mapped[list['Categories']] = relationship(
-        'Categories', secondary='movies_category', back_populates='movies'
+        'Categories', secondary=movies_categories, back_populates='movies'
     )
     genres: Mapped[list['Genres']] = relationship(
-        'Genres', secondary='movie_genres', back_populates='movies'
+        'Genres', secondary=movies_genres, back_populates='movies'
     )
 
     def __str__(self):

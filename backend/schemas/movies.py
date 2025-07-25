@@ -1,10 +1,6 @@
 from pydantic import BaseModel
-from typing import List, Optional, TYPE_CHECKING
+from typing import List, Optional
 
-if TYPE_CHECKING:
-    from .comments import CommentRead
-    from .categories import CategoryRead
-    from .genres import GenreRead
 
 class MovieBase(BaseModel):
     title: str
@@ -12,8 +8,9 @@ class MovieBase(BaseModel):
     description: str
     rating: float
 
-    class Config:
-        from_attributes = True
+    model_config = {
+        "from_attributes": True,
+    }
 
 class MovieRead(MovieBase):
     id: int
@@ -33,5 +30,3 @@ class MovieCreate(MovieBase):
 
 class MovieUpdate(MovieBase):
     pass
-
-MovieRead.model_rebuild()

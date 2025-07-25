@@ -1,16 +1,15 @@
 from pydantic import BaseModel
-from typing import TYPE_CHECKING, Optional, List,TYPE_CHECKING
+from typing import Optional, List
 
-if TYPE_CHECKING:
-    from .comments import CommentRead
 
 class UserBase(BaseModel):
     username: str
     email: str
     password: str
 
-    class Config:
-        from_attributes = True
+    model_config = {
+        "from_attributes": True,
+    }
 
 
 class UserRead(UserBase):

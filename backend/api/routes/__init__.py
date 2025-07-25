@@ -10,5 +10,5 @@ __all__ = (
     'user_router',
     'categories_router',
     'movies_router',
-    'comments_router'
+    'comments_router',
 )

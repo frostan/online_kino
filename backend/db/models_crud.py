@@ -5,10 +5,9 @@ from models import Categories, Comments, User, Genres, Movies
 
 
 class CRUDCategories(CRUDBase):
-    
     async def get_all(self, session: AsyncSession):
-       result = await session.execute(select(self.model))
-       return result.scalars().all()
+        result = await session.execute(select(self.model))
+        return result.scalars().all()
 
 
 class CRUDComments(CRUDBase):

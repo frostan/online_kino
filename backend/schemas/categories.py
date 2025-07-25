@@ -1,21 +1,22 @@
 from pydantic import BaseModel
-from typing import List, Optional
+from typing import Optional
 
 
 class CategoryBase(BaseModel):
     title: str
 
     model_config = {
-        "arbitrary_types_allowed": True,
+        'arbitrary_types_allowed': True,
     }
+
 
 class CategoryRead(CategoryBase):
     id: int
-    movies: Optional[List['MovieRead']] = None
+    movies: Optional[list['MovieRead']] = None
 
     model_config = {
-        "from_attributes": True,
-        "arbitrary_types_allowed": True,
+        'from_attributes': True,
+        'arbitrary_types_allowed': True,
     }
 
 

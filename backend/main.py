@@ -4,24 +4,32 @@ from contextlib import asynccontextmanager
 from db.engine import engine
 from fastapi.staticfiles import StaticFiles
 
-from admin_panel.admin import CommentsAdmin, CategoryAdmin, UserAdmin, MoviesAdmin, GenresAdmin
-from api.routes import categories_router, user_router, comments_router, movies_router, genres_router
+from admin_panel.admin import (
+    CommentsAdmin,
+    CategoryAdmin,
+    UserAdmin,
+    MoviesAdmin,
+    GenresAdmin,
+)
+from api.routes import (
+    categories_router,
+    user_router,
+    comments_router,
+    movies_router,
+    genres_router,
+)
 
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-
-    print("Запуск сервера: подключение к базе данных")
-    async with engine.connect() as conn:
+    print('Запуск сервера: подключение к базе данных')
+    async with engine.connect() as _:
         yield
-    print("Завершение работы: отключение от базы данных")
+    print('Завершение работы: отключение от базы данных')
     await engine.dispose()
 
-app = FastAPI(
-    title='Online-kino',
-    description='Author - frostan',
-    lifespan=lifespan
-)
+
+app = FastAPI(title='Online-kino', description='Author - frostan', lifespan=lifespan)
 
 app.mount('/media', StaticFiles(directory='media'), name='media')
 admin = Admin(

@@ -1,5 +1,5 @@
 from pydantic import BaseModel
-from typing import Optional, List
+from typing import Optional
 
 
 class UserBase(BaseModel):
@@ -8,16 +8,16 @@ class UserBase(BaseModel):
     password: str
 
     model_config = {
-        "from_attributes": True,
+        'from_attributes': True,
     }
 
 
 class UserRead(UserBase):
     id: int
-    comments: Optional[List['CommentRead']] = None
-    
+    comments: Optional[list['CommentRead']] = None
+
     model_config = {
-        "arbitrary_types_allowed": True,
+        'arbitrary_types_allowed': True,
     }
 
 

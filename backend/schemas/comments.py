@@ -9,7 +9,7 @@ class CommentBase(BaseModel):
     username: str
 
     model_config = {
-        "arbitrary_types_allowed": True,
+        'arbitrary_types_allowed': True,
     }
 
 
@@ -19,8 +19,8 @@ class CommentRead(CommentBase):
     user: Optional['UserRead'] = None
 
     model_config = {
-        "from_attributes": True,
-        "arbitrary_types_allowed": True,
+        'from_attributes': True,
+        'arbitrary_types_allowed': True,
     }
 
 

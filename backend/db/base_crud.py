@@ -21,6 +21,15 @@ class CRUDBase:
         )
         return result.scalar_one_or_none()
 
+    async def _fetch_one(self, condition, session):
+        stmt = select(self.model).where(condition)
+        result = await session.execute(stmt)
+        return result.scalars().first()
+
+    async def get_by_attr(self, attr_name, attr_value, session):
+        attr = getattr(self.model, attr_name)
+        return await self._fetch_one(attr == attr_value, session)
+
     async def update(self, session: AsyncSession, obj_id: int, obj_in: dict):
         result = await session.execute(
             select(self.model).where(self.model.id == obj_id)

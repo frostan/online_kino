@@ -1,8 +1,10 @@
 from fastapi import FastAPI
 from sqladmin import Admin
 from contextlib import asynccontextmanager
-from db.engine import engine
 from fastapi.staticfiles import StaticFiles
+
+from config import settings
+from db.engine import engine
 
 from admin_panel.admin import (
     CommentsAdmin,
@@ -10,6 +12,7 @@ from admin_panel.admin import (
     UserAdmin,
     MoviesAdmin,
     GenresAdmin,
+    AdminAuth,
 )
 from api.routes import (
     categories_router,
@@ -35,6 +38,7 @@ app.mount('/media', StaticFiles(directory='media'), name='media')
 admin = Admin(
     app,
     engine,
+    authentication_backend=AdminAuth(secret_key=settings.SECRET_KEY),
     title='Online-kino',
     logo_url='/media/freepik__retouch__9805.png',
 )

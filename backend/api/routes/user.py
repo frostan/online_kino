@@ -1,10 +1,14 @@
 from fastapi import APIRouter
 
 
-user_router = APIRouter()
+user_router = APIRouter(prefix='/api')
 
 
-
-@user_router.get('')
+@user_router.get('/users')
 async def user_list():
-    return {'users':[]}
+    return {'users': []}
+
+
+@user_router.get('/users/{id}')
+async def user_retrieve(id: int):
+    pass

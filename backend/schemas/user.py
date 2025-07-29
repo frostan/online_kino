@@ -1,5 +1,4 @@
 from pydantic import BaseModel
-from typing import Optional
 
 
 class UserBase(BaseModel):
@@ -14,7 +13,6 @@ class UserBase(BaseModel):
 
 class UserRead(UserBase):
     id: int
-    comments: Optional[list['CommentRead']] = None
 
     model_config = {
         'arbitrary_types_allowed': True,

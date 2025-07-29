@@ -1,10 +1,12 @@
+from datetime import datetime
+
 from pydantic import BaseModel
 from typing import Optional
 
 
 class MovieBase(BaseModel):
     title: str
-    date: Optional[str]
+    date: Optional[datetime]
     description: str
     rating: float
 
@@ -15,9 +17,6 @@ class MovieBase(BaseModel):
 
 class MovieRead(MovieBase):
     id: int
-    comments: Optional[list['CommentRead']] = None
-    categories: Optional[list['CategoryRead']] = None
-    genres: Optional[list['GenreRead']] = None
 
     model_config = {
         'from_attributes': True,

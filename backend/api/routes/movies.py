@@ -1,12 +1,17 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, Depends
+from sqlalchemy.ext.asyncio import AsyncSession
 
+from schemas.movies import MovieRead
+from db.engine import get_async_session
+from db.models_crud import crud_movies
 
 movies_router = APIRouter(prefix='/api')
 
 
-@movies_router.get('/movies')
-async def movies_list():
-    return {'movies': ['1', '1', '2', '3']}
+@movies_router.get('/movies', response_model=list[MovieRead])
+async def movies_list(session: AsyncSession = Depends(get_async_session)):
+    movies = await crud_movies.get_multi(session=session)
+    return movies
 
 
 @movies_router.get('/movies/{id}')

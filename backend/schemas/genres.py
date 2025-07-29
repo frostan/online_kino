@@ -15,6 +15,7 @@ class GenreRead(GenreBase):
     movies: Optional[list['MovieRead']] = None
 
     model_config = {
+        'from_attributes': True,
         'arbitrary_types_allowed': True,
     }
 

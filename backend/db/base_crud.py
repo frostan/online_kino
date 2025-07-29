@@ -1,5 +1,6 @@
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
+from sqlalchemy.orm import selectinload
 
 
 class CRUDBase:
@@ -15,11 +16,15 @@ class CRUDBase:
         await session.refresh(obj)
         return obj
 
-    async def read(self, session: AsyncSession, obj_id: int):
+    async def get_all(self, session: AsyncSession):
         result = await session.execute(
-            select(self.model).where(self.model.id == obj_id)
+            select(self.model).options(selectinload(self.model.movies))
         )
-        return result.scalar_one_or_none()
+        return result.scalars().all()
+
+    async def get_multi(self, session: AsyncSession, skip: int = 0, limit: int = 100):
+        result = await session.execute(select(self.model).offset(skip).limit(limit))
+        return result.scalars().all()
 
     async def _fetch_one(self, condition, session):
         stmt = select(self.model).where(condition)

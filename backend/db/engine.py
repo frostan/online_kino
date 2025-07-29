@@ -9,3 +9,8 @@ async_session_maker = async_sessionmaker(
     expire_on_commit=False,
     class_=AsyncSession,
 )
+
+
+async def get_async_session() -> AsyncSession:
+    async with async_session_maker() as session:
+        yield session

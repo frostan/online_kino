@@ -5,9 +5,11 @@ from models import Categories, Comments, User, Genres, Movies
 
 
 class CRUDCategories(CRUDBase):
-    async def get_all(self, session: AsyncSession):
-        result = await session.execute(select(self.model))
-        return result.scalars().all()
+    async def get_by_title(self, session: AsyncSession, title: str):
+        result = await session.execute(
+            select(self.model).where(self.model.title == title)
+        )
+        return result.scalars().first()
 
 
 class CRUDComments(CRUDBase):

@@ -3,6 +3,7 @@ from sqladmin import Admin
 from contextlib import asynccontextmanager
 from fastapi.staticfiles import StaticFiles
 
+# from fastapi.middleware.gzip import GZipMiddleware
 from config import settings
 from db.engine import engine
 
@@ -34,6 +35,14 @@ async def lifespan(app: FastAPI):
 
 app = FastAPI(title='Online-kino', description='Author - frostan', lifespan=lifespan)
 
+# @app.middleware("http")
+# async def add_charset_header(request, call_next):
+#     response = await call_next(request)
+#     response.headers["Content-Type"] = "application/json; charset=utf-8"
+#     return response
+#
+# app.add_middleware(GZipMiddleware)
+
 app.mount('/media', StaticFiles(directory='media'), name='media')
 admin = Admin(
     app,
@@ -54,3 +63,7 @@ app.include_router(user_router)
 app.include_router(categories_router)
 app.include_router(movies_router)
 app.include_router(genres_router)
+
+# if __name__ == '__main__':
+#     import uvicorn
+#     uvicorn.run(app, host='127.0.0.1', port=8000)

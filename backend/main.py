@@ -33,7 +33,13 @@ async def lifespan(app: FastAPI):
     await engine.dispose()
 
 
-app = FastAPI(title='Online-kino', description='Author - frostan', lifespan=lifespan)
+app = FastAPI(
+    title='Online-kino',
+    description='Автор - frostan',
+    lifespan=lifespan,
+    docs_url='/api/docs',
+    redoc_url='/api/redoc',
+)
 
 
 @app.middleware('http')
@@ -44,7 +50,7 @@ async def force_utf8_charset(request: Request, call_next):
     return response
 
 
-app.mount('/media', StaticFiles(directory='media'), name='media')
+app.mount('/media', StaticFiles(directory=settings.MEDIA_DIR), name='media')
 admin = Admin(
     app,
     engine,

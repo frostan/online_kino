@@ -6,8 +6,8 @@ from itsdangerous.serializer import Serializer
 from itsdangerous.exc import BadSignature
 
 from models import Movies, Comments, Categories, Genres, User
-from db.engine import async_session_maker
-from db.models_crud import crud_user
+from crud.engine import async_session_maker
+from crud.models_crud import crud_user
 
 
 class AdminAuth(AuthenticationBackend):

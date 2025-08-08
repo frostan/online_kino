@@ -11,6 +11,7 @@ class Movies(Base):
     date: Mapped[DateTime] = mapped_column(DateTime)
     description: Mapped[str] = mapped_column(String)
     rating: Mapped[float] = mapped_column(Float)
+    video_path: Mapped[str] = mapped_column(String(255), nullable=True)
     comments: Mapped[list['Comments']] = relationship(
         'Comments', back_populates='movie'
     )

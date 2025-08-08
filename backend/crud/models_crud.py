@@ -1,6 +1,6 @@
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
-from db.base_crud import CRUDBase
+from crud.base_crud import CRUDBase
 from models import Categories, Comments, User, Genres, Movies
 
 

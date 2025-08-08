@@ -1,11 +1,11 @@
 from fastapi import FastAPI
+from fastapi.requests import Request
 from sqladmin import Admin
 from contextlib import asynccontextmanager
 from fastapi.staticfiles import StaticFiles
 
-# from fastapi.middleware.gzip import GZipMiddleware
 from config import settings
-from db.engine import engine
+from crud.engine import engine
 
 from admin_panel.admin import (
     CommentsAdmin,
@@ -35,13 +35,14 @@ async def lifespan(app: FastAPI):
 
 app = FastAPI(title='Online-kino', description='Author - frostan', lifespan=lifespan)
 
-# @app.middleware("http")
-# async def add_charset_header(request, call_next):
-#     response = await call_next(request)
-#     response.headers["Content-Type"] = "application/json; charset=utf-8"
-#     return response
-#
-# app.add_middleware(GZipMiddleware)
+
+@app.middleware('http')
+async def force_utf8_charset(request: Request, call_next):
+    response = await call_next(request)
+    if 'application/json' in response.headers.get('content-type', ''):
+        response.headers['content-type'] = 'application/json; charset=utf-8'
+    return response
+
 
 app.mount('/media', StaticFiles(directory='media'), name='media')
 admin = Admin(
@@ -64,6 +65,7 @@ app.include_router(categories_router)
 app.include_router(movies_router)
 app.include_router(genres_router)
 
-# if __name__ == '__main__':
-#     import uvicorn
-#     uvicorn.run(app, host='127.0.0.1', port=8000)
+if __name__ == '__main__':
+    import uvicorn
+
+    uvicorn.run(app, host='127.0.0.1', port=8000)

@@ -9,6 +9,11 @@ class CRUDBase:
     def __init__(self, model) -> None:
         self.model = model
 
+    async def get(self, session: AsyncSession, id: int):
+        stmt = select(self.model).where(self.model.id == id)
+        res = await session.execute(stmt)
+        return res.scalar_one_or_none()
+
     async def create(self, session: AsyncSession, obj_in: dict):
         obj = self.model(**obj_in)
         session.add(obj)
